@@ -1,0 +1,11 @@
+---
+#- name: configure pam
+#  lineinfile: create 
+#/etc/pam.d/common-session
+
+#session required pam_limits.so
+
+- name: configure limits
+  template: src=limits.conf.j2 dest=/etc/security/limits.d/{{limits_filename}}.conf
+  when: ansible_system == "Linux"
+  tags: ["configuration","limits"]
