@@ -1,9 +1,9 @@
 ---
-#- name: configure pam
-#  lineinfile: create 
-#/etc/pam.d/common-session
-
-#session required pam_limits.so
+- name: configure pam
+  lineinfile: 
+    create=true dest=/etc/pam.d/common-session
+    line="session required pam_limits.so"
+  tags: ["configuration","limits"]
 
 - name: configure limits
   template: src=limits.conf.j2 dest=/etc/security/limits.d/{{limits_filename}}.conf
